@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   captureButton.addEventListener("click", () => {
     // deleteSub();
     const canvas = document.createElement("canvas");
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
