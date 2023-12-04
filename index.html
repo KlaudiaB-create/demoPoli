@@ -18,8 +18,8 @@
   <body>
     <div class="shot">
       <video class="shot__back" id="video" autoplay muted playsinline></video>
-
       <div class="shot__contents">
+        <p class="shot__image-box"></p>
         <!-- <div class="move"><i class="fa-solid fa-xmark iconsize"></i></div> -->
 
         <div class="flash">
@@ -32,7 +32,6 @@
         </div>
 
         <div class="erea"><img src="./images/search_area.svg" alt="" /></div>
-
         <p class="comment">シャッターボタンをタップして検索</p>
         <div class="btn" id="captureButton">
           <i class="fa-solid fa-magnifying-glass iconsize"></i>
@@ -42,31 +41,29 @@
 
     <!-- <button id="captureButton">キャプチャ</button> -->
     <!-- <div id="output"></div> -->
-    <div class="load none">
-      <div class="move"><i class="fa-solid fa-arrow-left iconsize"></i></div>
-      <div class="pic">
-        <p class="pic__back-box"><img class="pic__back" src="" alt="" /></p>
-        <div class="pic__erea">
-          <img src="./images/search_area.svg" alt="" />
-        </div>
-      </div>
 
-      <div class="politician">
-        <div class="politician__inner">
-          <h1 class="politician__name">安倍晋三</h1>
-          <div class="politician__position">
-            <p class="affiliation">日本未来党</p>
-            <p class="age">52歳</p>
+    <div class="modal-back"></div>
+    <div class="politician">
+      <div class="politician__inner">
+        <p class="politician__scroll-bar"></p>
+        <div class="politician__content">
+          <div class="politician__data">
+            <h1 class="politician__name">安倍晋三</h1>
+            <div class="politician__position">
+              <p class="affiliation">日本未来党</p>
+              <p class="age">52歳</p>
+            </div>
           </div>
-          <p class="politician__explanation">
-            これまで小学校の教員として一人ひとりの子どもに寄り添った教育に努めてきた。
-            人手不足の教育現場の現状に目を向け、教員の充実支援と施設改善を通じて、地域の未来を育むことを公約としている。
-            また、二人の息子を育てる母としての経験から、子育て支援にも情熱を注ぐ議員である。
-          </p>
-          <a class="politician__link" href="" target="_blank"
-            ><i class="fa-solid fa-link"></i>経歴・公約を見る</a
-          >
+          <p class="politician__close"></p>
         </div>
+        <p class="politician__explanation">
+          これまで小学校の教員として一人ひとりの子どもに寄り添った教育に努めてきた。
+          人手不足の教育現場の現状に目を向け、教員の充実支援と施設改善を通じて、地域の未来を育むことを公約としている。
+          また、二人の息子を育てる母としての経験から、子育て支援にも情熱を注ぐ議員である。
+        </p>
+        <a class="politician__link" href="" target="_blank"
+          ><i class="fa-solid fa-link"></i>経歴・公約を見る</a
+        >
       </div>
     </div>
 

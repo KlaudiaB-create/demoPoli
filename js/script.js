@@ -3,24 +3,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const video = document.getElementById("video");
   // const outputDiv = document.getElementById("output");
   const captureButton = document.getElementById("captureButton");
+  const politician = document.querySelector(".politician");
+  const modalBack = document.querySelector(".modal-back");
   const politician__explanation = document.querySelector(
     ".politician__explanation"
   );
   const politician__name = document.querySelector(".politician__name");
   const affiliation = document.querySelector(".affiliation");
   const politician__link = document.querySelector(".politician__link");
+  const politicianClose = document.querySelector(".politician__close");
+  const politicianScrollBar = document.querySelector(".plitician__scroll-bar");
   const age = document.querySelector(".age");
-  const pic__back = document.querySelector(".pic__back");
-  const shot = document.querySelector(".shot");
-  const load = document.querySelector(".load");
-  const move = document.querySelector(".move");
-
-  move.addEventListener("click", () => {
-    console.log("click");
-    shot.classList.toggle("none");
-    load.classList.toggle("none");
-    // politician__link.classList.add("none");
-  });
+  const shotBox = document.querySelector(".shot__image-box");
 
   const changeSub = (obj) => {
     politician__name.textContent = obj.name[obj.name.length - 1];
@@ -53,6 +47,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
       console.error("Error accessing the camera", err);
     });
 
+  // モーダル非表示処理
+  const modalClose = () => {
+    politician.classList.toggle("active");
+    if (modalBack.classList.contains("active")) {
+      modalBack.classList.add("none");
+      modalBack.classList.remove("active");
+    } else {
+      modalBack.classList.add("active");
+      modalBack.classList.remove("none");
+    }
+    const shotImage = document.querySelector(".shot__image");
+    shotImage.remove();
+  };
+  politicianClose.addEventListener("click", () => {
+    modalClose();
+  });
+  modalBack.addEventListener("click", () => {
+    modalClose();
+    // politician__link.classList.add("none");
+  });
+  // 文字読み込みをした時の処理
   captureButton.addEventListener("click", () => {
     // deleteSub();
     const canvas = document.createElement("canvas");
@@ -64,15 +79,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     const imgDataUrl = canvas.toDataURL("image/png");
-    const imgElement = document.createElement("img");
-    imgElement.src = imgDataUrl;
-    imgElement.width = 200;
-
-    pic__back.setAttribute("src", imgDataUrl);
-
+    const shotImage = document.createElement("img");
+    shotImage.classList.add("shot__image");
+    shotImage.setAttribute("src", imgDataUrl);
+    shotBox.append(shotImage);
     //表示切替
-    shot.classList.toggle("none");
-    load.classList.toggle("none");
+    politician.classList.toggle("active");
+    if (modalBack.classList.contains("active")) {
+      modalBack.classList.remove("active");
+      modalBack.classList.add("none");
+    } else {
+      modalBack.classList.remove("none");
+      modalBack.classList.add("active");
+    }
 
     if (true) {
       //モーダル出す処理を記述
