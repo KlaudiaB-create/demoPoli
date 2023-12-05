@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   words.forEach((word) => {
     word.addEventListener("touchstart", () => {
       word.style.background = "#A3E517";
-      const detailContent = document.createElement("del");
+      const detailContent = document.createElement("div");
       detailContent.classList.add("detail");
 
       const detailArrow = document.createElement("div");
