@@ -292,10 +292,22 @@ img {
 }
 .detail {
   position: absolute;
+  top: 26px;
   width: 286px;
   box-sizing: border-box;
   padding: calc(5 / 10) + em;
   background: #f9fff4;
+  box-shadow: 0px 0px 23px -5px #adadad;
+  border-radius: 5px;
+  &__arrow {
+    content: "";
+    position: absolute;
+    top: -8px;
+    transform: translateX(-50%);
+    border-width: 0 8px 8px;
+    border-style: solid;
+    border-color: transparent transparent #f9fff4;
+  }
   &__word {
     font-size: 14px;
   }
