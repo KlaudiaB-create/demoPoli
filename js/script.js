@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const affiliation = document.querySelector(".affiliation");
   const politician__link = document.querySelector(".politician__link");
   const politicianClose = document.querySelector(".politician__close");
-  const politicianScrollBar = document.querySelector(".plitician__scroll-bar");
   const age = document.querySelector(".age");
   const shotBox = document.querySelector(".shot__image-box");
 
@@ -66,6 +65,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
   modalBack.addEventListener("click", () => {
     modalClose();
     // politician__link.classList.add("none");
+  });
+
+  // 吹き出し
+  const word = document.querySelector(".word");
+  word.addEventListener("mousedown", () => {
+    word.style.background = "#A3E517";
+    const detailContent = document.createElement("div");
+    detailContent.classList.add("detail");
+
+    const detailWord = document.createElement("h2");
+    detailWord.textContent = "こうやく【公約】";
+    detailWord.classList.add("detail__word");
+
+    const detailExplanation = document.createElement("p");
+    detailExplanation.textContent =
+      "（政府・政党などが）公衆に対して、ある事を実行すると約束すること。その約束。";
+    detailExplanation.classList.add("detail__explanation");
+
+    word.append(detailContent);
+    detailContent.append(detailWord);
+    detailContent.append(detailExplanation);
+  });
+  word.addEventListener("mouseup", () => {
+    word.style.background = "#ffffff";
+    const detail = document.querySelector(".detail");
+    detail.remove();
   });
   // 文字読み込みをした時の処理
   captureButton.addEventListener("click", () => {

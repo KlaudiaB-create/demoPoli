@@ -12,14 +12,6 @@ $color_bg: rgba(239, 255, 243, 0.2);
   margin-left: auto;
   margin-right: auto;
 }
-* {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
-}
 html {
   font-size: 10px;
   color: $color_text;
@@ -291,5 +283,20 @@ img {
   100% {
     transform: translateY(100vh);
     opacity: 0;
+  }
+}
+
+.word {
+  position: relative;
+}
+.detail {
+  position: absolute;
+  width: 286px;
+  background: #f9fff4;
+  &__word {
+    font-size: 14px;
+  }
+  &__explanation {
+    font-size: 14px;
   }
 }
