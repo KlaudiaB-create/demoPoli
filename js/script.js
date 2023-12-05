@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (word.offsetLeft < window.innerWidth / 2 - word.offsetWidth / 2) {
       detailContent.style.left = "-50%";
       detailContent.style.right = "auto";
-      detailArrow.style.left = "10%";
+      detailArrow.style.left = "11%";
       detailArrow.style.right = "auto";
     } else {
       detailContent.style.left = "auto";

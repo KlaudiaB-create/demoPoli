@@ -291,6 +291,7 @@ img {
   cursor: pointer;
 }
 .detail {
+  z-index: 100;
   position: absolute;
   top: 26px;
   width: 286px;
