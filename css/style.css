@@ -132,6 +132,7 @@ img {
 .politician {
   width: 100vw;
   height: 47.5vh;
+  min-height: -webkit-fill-available;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -306,6 +307,8 @@ img {
 .detail {
   position: absolute;
   width: 286px;
+  box-sizing: border-box;
+  padding: 0.5em;
   background: #f9fff4;
 }
 .detail__word {

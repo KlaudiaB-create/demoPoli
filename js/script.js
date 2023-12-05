@@ -68,8 +68,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   // 吹き出し
+  const word = document.querySelector(".word");
+  word.addEventListener("mousedown", () => {
+    word.style.background = "#A3E517";
+    const detailContent = document.createElement("div");
+    detailContent.classList.add("detail");
+
+    const detailWord = document.createElement("h2");
+    detailWord.textContent = "こうやく【公約】";
+    detailWord.classList.add("detail__word");
+
+    const detailExplanation = document.createElement("p");
+    detailExplanation.textContent =
+      "（政府・政党などが）公衆に対して、ある事を実行すると約束すること。その約束。";
+    detailExplanation.classList.add("detail__explanation");
+    if (word.offsetLeft < window.innerWidth / 2 - word.offsetWidth / 2) {
+      detailContent.style.left = 0;
+      detailContent.style.right = "auto";
+    } else {
+      detailContent.style.left = "auto";
+      detailContent.style.right = 0;
+    }
+    word.append(detailContent);
+    detailContent.append(detailWord);
+    detailContent.append(detailExplanation);
+  });
+  word.addEventListener("mouseup", () => {
+    word.style.background = "#ffffff";
+    const detail = document.querySelector(".detail");
+    detail.remove();
+  });
   // const word = document.querySelector(".word");
-  // word.addEventListener("mousedown", () => {
+  // word.addEventListener("touchstart", () => {
   //   word.style.background = "#A3E517";
   //   const detailContent = document.createElement("div");
   //   detailContent.classList.add("detail");
@@ -87,35 +117,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //   detailContent.append(detailWord);
   //   detailContent.append(detailExplanation);
   // });
-  // word.addEventListener("mouseup", () => {
+  // word.addEventListener("touchend", () => {
   //   word.style.background = "#ffffff";
   //   const detail = document.querySelector(".detail");
   //   detail.remove();
   // });
-  const word = document.querySelector(".word");
-  word.addEventListener("touchstart", () => {
-    word.style.background = "#A3E517";
-    const detailContent = document.createElement("div");
-    detailContent.classList.add("detail");
-
-    const detailWord = document.createElement("h2");
-    detailWord.textContent = "こうやく【公約】";
-    detailWord.classList.add("detail__word");
-
-    const detailExplanation = document.createElement("p");
-    detailExplanation.textContent =
-      "（政府・政党などが）公衆に対して、ある事を実行すると約束すること。その約束。";
-    detailExplanation.classList.add("detail__explanation");
-
-    word.append(detailContent);
-    detailContent.append(detailWord);
-    detailContent.append(detailExplanation);
-  });
-  word.addEventListener("touchend", () => {
-    word.style.background = "#ffffff";
-    const detail = document.querySelector(".detail");
-    detail.remove();
-  });
 
   // 文字読み込みをした時の処理
   captureButton.addEventListener("click", () => {
