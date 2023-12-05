@@ -301,6 +301,7 @@ img {
 .word {
   position: relative;
   cursor: pointer;
+  z-index: 3;
 }
 
 .detail {
