@@ -35,8 +35,8 @@ img {
   position: relative;
 
   &__back {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
     object-fit: cover;
   }
@@ -45,8 +45,8 @@ img {
     top: 0;
     left: 0;
     z-index: 1;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
   }
   &__contents {
@@ -81,6 +81,8 @@ img {
     position: relative;
     z-index: 2;
     @include inner($w: 80%);
+    height: auto;
+    min-width: 312px;
     margin: calc(30 / 10) + em auto;
   }
 
@@ -136,7 +138,7 @@ img {
 // ------------result.html----------------
 
 .politician {
-  width: 100%;
+  width: 100vw;
   height: 44.075vh;
   position: absolute;
   left: 0;
