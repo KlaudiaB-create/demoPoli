@@ -58,7 +58,7 @@ img {
   position: relative;
   z-index: 2;
   margin: auto;
-  margin-top: 5.4em;
+  margin-top: 3em;
 }
 .shot .flash img {
   width: auto;
@@ -76,7 +76,7 @@ img {
   margin-left: auto;
   margin-right: auto;
   height: 52.5vh;
-  margin: 3em auto;
+  margin: 2em auto 3em;
 }
 .shot .erea img {
   width: 100%;
