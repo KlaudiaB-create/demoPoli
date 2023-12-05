@@ -21,6 +21,7 @@ html {
 
 body {
   width: 100vw;
+  height: 100vh;
   min-height: 100vh;
   min-height: -webkit-fill-available;
   overflow: hidden;
@@ -86,7 +87,7 @@ img {
     position: relative;
     z-index: 2;
     @include inner($w: 80%);
-    height: 55vh;
+    height: 52.5vh;
     margin: calc(30 / 10) + em auto;
     img {
       width: 100%;
