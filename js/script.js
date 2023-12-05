@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // politician__link.classList.add("none");
   });
 
-  // 吹き出し
+  // 吹き出し（PC版）
   // const word = document.querySelector(".word");
   // word.addEventListener("mousedown", () => {
   //   word.style.background = "#A3E517";
@@ -107,6 +107,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   //   const detail = document.querySelector(".detail");
   //   detail.remove();
   // });
+
+  // 吹き出し（スマホ版）
   const word = document.querySelector(".word");
   word.addEventListener("touchstart", () => {
     word.style.background = "#A3E517";
