@@ -148,7 +148,7 @@ img {
 
 .politician {
   width: 100vw;
-  height: 47.5vh;
+  height: 100vh;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -160,7 +160,7 @@ img {
   border-top-right-radius: 20px;
 
   &.active {
-    transform: translateY(0);
+    transform: translateY(47.5vh);
   }
   &__scroll-bar {
     width: 40px;
