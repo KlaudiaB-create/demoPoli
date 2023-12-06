@@ -144,7 +144,7 @@ img {
   border-top-right-radius: 20px;
 }
 .politician.active {
-  transform: translateY(47.5vh);
+  transform: translateY(52.5vh);
 }
 .politician__scroll-bar {
   width: 40px;
