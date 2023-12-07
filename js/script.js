@@ -79,12 +79,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
       detailArrow.classList.add("detail__arrow");
 
       const detailWord = document.createElement("h2");
-      detailWord.textContent = "こうやく【公約】";
+      detailWord.textContent = "すいしん【推進】";
       detailWord.classList.add("detail__word");
 
       const detailExplanation = document.createElement("p");
       detailExplanation.textContent =
-        "（政府・政党などが）公衆に対して、ある事を実行すると約束すること。その約束。";
+        "前におしすすめること。物事がはかどるようにすること。";
       detailExplanation.classList.add("detail__explanation");
       if (word.offsetLeft < window.innerWidth / 2 - word.offsetWidth / 2) {
         detailContent.style.left = "-50%";
