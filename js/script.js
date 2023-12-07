@@ -113,90 +113,102 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // フラッシュ機能(追加)
   const flash = document.querySelector(".flash");
   const flashIcon = document.querySelector(".flash__icon");
-  let isFlashOn = false;
 
   flash.addEventListener("click", () => {
     flash.classList.toggle("active");
     if (flash.classList.contains("active")) {
       flashIcon.setAttribute("src", "../images/bolt-solid.svg");
-      isFlashOn = true;
+      const constraints = {
+        video: {
+          facingMode: "environment",
+          torch: true,
+        },
+      };
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then((stream) => {
+          video.srcObject = stream;
+          video.play();
+        })
+        .catch((error) => {
+          console.error("カメラにアクセスできませんでした: ", error);
+        });
     } else {
       flashIcon.setAttribute("src", "../images/un_flash.svg");
-      isFlashOn = false;
+      const constraints = {
+        video: {
+          facingMode: "environment",
+          torch: false,
+        },
+      };
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then((stream) => {
+          video.srcObject = stream;
+          video.play();
+        })
+        .catch((error) => {
+          console.error("カメラにアクセスできませんでした: ", error);
+        });
     }
   });
-  function toggleFlashlight() {
-    const constraints = {
-      video: {
-        facingMode: "environment",
-        // フラッシュライトの設定
-        torch: isFlashOn,
-      },
-    };
-    navigator.mediaDevices
-      .getUserMedia(constraints)
-      .then((stream) => {
-        video.srcObject = stream;
-        video.play();
-        isFlashOn = !isFlashOn; // フラッシュライトの状態をトグル
-      })
-      .catch((err) => {
-        console.error("Error accessing the camera", err);
-      });
-  }
+
   // 文字読み込みをした時の処理
-  captureButton.addEventListener("click", () => {
-    if (flash.classList.contains("active")) {
-      toggleFlashlight();
-    }
-    // deleteSub();
-    const canvas = document.createElement("canvas");
-    const videoAspectRatio = video.videoWidth / video.videoHeight;
-    canvas.width = video.clientWidth;
-    canvas.height = video.clientWidth / videoAspectRatio;
+  captureButton.addEventListener(
+    "click",
+    () => {
+      // deleteSub();
+      setTimeout(() => {
+        const canvas = document.createElement("canvas");
+        const videoAspectRatio = video.videoWidth / video.videoHeight;
+        canvas.width = video.clientWidth;
+        canvas.height = video.clientWidth / videoAspectRatio;
 
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    const imgDataUrl = canvas.toDataURL("image/png");
-    const shotImage = document.createElement("img");
-    shotImage.classList.add("shot__image");
-    shotImage.setAttribute("src", imgDataUrl);
-    shotBox.append(shotImage);
-    //表示切替
-    politician.classList.toggle("active");
-    if (modalBack.classList.contains("active")) {
-      modalBack.classList.remove("active");
-      modalBack.classList.add("none");
-    } else {
-      modalBack.classList.remove("none");
-      modalBack.classList.add("active");
-    }
+        const imgDataUrl = canvas.toDataURL("image/png");
+        const shotImage = document.createElement("img");
+        shotImage.classList.add("shot__image");
+        shotImage.setAttribute("src", imgDataUrl);
+        shotBox.append(shotImage);
+        //表示切替
+        politician.classList.toggle("active");
+        if (modalBack.classList.contains("active")) {
+          modalBack.classList.remove("active");
+          modalBack.classList.add("none");
+        } else {
+          modalBack.classList.remove("none");
+          modalBack.classList.add("active");
+        }
 
-    if (true) {
-      //モーダル出す処理を記述
-    } else {
-      //検索できなかった・エラーが出た際の処理を記述（）
-    }
+        if (true) {
+          //モーダル出す処理を記述
+        } else {
+          //検索できなかった・エラーが出た際の処理を記述（）
+        }
 
-    //サーバー処理
-    // fetch("index.php", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ imageDataUrl: imgDataUrl }),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     changeSub(data);
-    //     alert("できた");
-    //     politician__link.classList.remove("none");
-    //   })
-    //   .catch((error) => {
-    //     politician__name.textContent = "もう一度試してください";
-    //     console.log("Error:", error);
-    //   });
-  });
+        //サーバー処理
+        // fetch("index.php", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ imageDataUrl: imgDataUrl }),
+        // })
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //     changeSub(data);
+        //     alert("できた");
+        //     politician__link.classList.remove("none");
+        //   })
+        //   .catch((error) => {
+        //     politician__name.textContent = "もう一度試してください";
+        //     console.log("Error:", error);
+        //   });
+      });
+    },
+    100
+  );
 });
