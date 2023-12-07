@@ -125,13 +125,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const toggleFlashlight = () => {
     const tracks = video.srcObject.getTracks();
+    console.log("Tracks: ", tracks); // トラック情報をログに出力
+
     tracks.forEach((track) => {
+      console.log("Track kind: ", track.kind); // トラックの種類をログに出力
+
       if (track.kind === "video") {
         const capabilities = track.getCapabilities();
-        console.log("Video track capabilities:", capabilities);
+        console.log("Capabilities: ", capabilities); // キャパビリティをログに出力
 
         if (capabilities.torch) {
           let isTorchOn = track.getSettings().torch === true;
+          console.log("Applying torch constraint: ", {
+            advanced: [{ torch: !isTorchOn }],
+          });
+
           track.applyConstraints({
             advanced: [{ torch: !isTorchOn }],
           });
@@ -139,61 +147,60 @@ document.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   };
+
   // 文字読み込みをした時の処理
   captureButton.addEventListener("click", () => {
     if (flash.classList.contains("active")) {
       toggleFlashlight();
     }
     // deleteSub();
-    setTimeout(() => {
-      const canvas = document.createElement("canvas");
-      const videoAspectRatio = video.videoWidth / video.videoHeight;
-      canvas.width = video.clientWidth;
-      canvas.height = video.clientWidth / videoAspectRatio;
+    const canvas = document.createElement("canvas");
+    const videoAspectRatio = video.videoWidth / video.videoHeight;
+    canvas.width = video.clientWidth;
+    canvas.height = video.clientWidth / videoAspectRatio;
 
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-      const imgDataUrl = canvas.toDataURL("image/png");
-      const shotImage = document.createElement("img");
-      shotImage.classList.add("shot__image");
-      shotImage.setAttribute("src", imgDataUrl);
-      shotBox.append(shotImage);
-      //表示切替
-      politician.classList.toggle("active");
-      if (modalBack.classList.contains("active")) {
-        modalBack.classList.remove("active");
-        modalBack.classList.add("none");
-      } else {
-        modalBack.classList.remove("none");
-        modalBack.classList.add("active");
-      }
+    const imgDataUrl = canvas.toDataURL("image/png");
+    const shotImage = document.createElement("img");
+    shotImage.classList.add("shot__image");
+    shotImage.setAttribute("src", imgDataUrl);
+    shotBox.append(shotImage);
+    //表示切替
+    politician.classList.toggle("active");
+    if (modalBack.classList.contains("active")) {
+      modalBack.classList.remove("active");
+      modalBack.classList.add("none");
+    } else {
+      modalBack.classList.remove("none");
+      modalBack.classList.add("active");
+    }
 
-      if (true) {
-        //モーダル出す処理を記述
-      } else {
-        //検索できなかった・エラーが出た際の処理を記述（）
-      }
+    if (true) {
+      //モーダル出す処理を記述
+    } else {
+      //検索できなかった・エラーが出た際の処理を記述（）
+    }
 
-      //サーバー処理
-      // fetch("index.php", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ imageDataUrl: imgDataUrl }),
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log(data);
-      //     changeSub(data);
-      //     alert("できた");
-      //     politician__link.classList.remove("none");
-      //   })
-      //   .catch((error) => {
-      //     politician__name.textContent = "もう一度試してください";
-      //     console.log("Error:", error);
-      //   });
-    }, 200);
+    //サーバー処理
+    // fetch("index.php", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ imageDataUrl: imgDataUrl }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     changeSub(data);
+    //     alert("できた");
+    //     politician__link.classList.remove("none");
+    //   })
+    //   .catch((error) => {
+    //     politician__name.textContent = "もう一度試してください";
+    //     console.log("Error:", error);
+    //   });
   });
 });
