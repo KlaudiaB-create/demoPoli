@@ -113,41 +113,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // フラッシュ機能(追加)
   const flash = document.querySelector(".flash");
   const flashIcon = document.querySelector(".flash__icon");
+  let isFlashOn = false;
 
   flash.addEventListener("click", () => {
     flash.classList.toggle("active");
     if (flash.classList.contains("active")) {
       flashIcon.setAttribute("src", "../images/bolt-solid.svg");
+      isFlashOn = true;
     } else {
       flashIcon.setAttribute("src", "../images/un_flash.svg");
+      isFlashOn = false;
     }
   });
-
-  const toggleFlashlight = () => {
-    const tracks = video.srcObject.getTracks();
-    console.log("Tracks: ", tracks); // トラック情報をログに出力
-
-    tracks.forEach((track) => {
-      console.log("Track kind: ", track.kind); // トラックの種類をログに出力
-
-      if (track.kind === "video") {
-        const capabilities = track.getCapabilities();
-        console.log("Capabilities: ", capabilities); // キャパビリティをログに出力
-
-        if (capabilities.torch) {
-          let isTorchOn = track.getSettings().torch === true;
-          console.log("Applying torch constraint: ", {
-            advanced: [{ torch: !isTorchOn }],
-          });
-
-          track.applyConstraints({
-            advanced: [{ torch: !isTorchOn }],
-          });
-        }
-      }
-    });
-  };
-
+  function toggleFlashlight() {
+    const constraints = {
+      video: {
+        facingMode: "environment",
+        // フラッシュライトの設定
+        torch: isFlashOn,
+      },
+    };
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((stream) => {
+        video.srcObject = stream;
+        video.play();
+        isFlashOn = !isFlashOn; // フラッシュライトの状態をトグル
+      })
+      .catch((err) => {
+        console.error("Error accessing the camera", err);
+      });
+  }
   // 文字読み込みをした時の処理
   captureButton.addEventListener("click", () => {
     if (flash.classList.contains("active")) {
