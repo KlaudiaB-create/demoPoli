@@ -308,7 +308,7 @@ img {
   z-index: 1000;
   position: absolute;
   top: 35px;
-  width: 50vh;
+  width: 50vw;
   box-sizing: border-box;
   padding: 0.5em;
   background: #f9fff4;
@@ -318,7 +318,7 @@ img {
 .detail__arrow {
   content: "";
   position: absolute;
-  top: -8px;
+  top: -6px;
   transform: translateX(-50%);
   border-width: 0 8px 8px;
   border-style: solid;
