@@ -308,7 +308,7 @@ img {
   z-index: 1000;
   position: absolute;
   top: 35px;
-  width: 286px;
+  width: 50vh;
   box-sizing: border-box;
   padding: 0.5em;
   background: #f9fff4;
